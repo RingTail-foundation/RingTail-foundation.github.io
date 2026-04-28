@@ -676,16 +676,8 @@ document.addEventListener('click', e => {
 });
 
 function triggerDownload(platform, version) {
-  // Real path structure: apk_version/vservo.{version}.apk (as .rar)
   const filename = `vservo.${version}.rar`;
-  const url = `https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases/download/${filename}`;
-  log(`⬇ Fetching ${filename} for ${platform}…`, 'info');
-
- function triggerDownload(platform, version) {
-  const filename = `vservo.${version}.rar`;
-
-  const url =
-   `https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases/download/v${version}/${filename}`;
+  const url = `https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases/download/v${version}/${filename}`;
 
   log(`⬇ Redirecting to GitHub release...`, 'info');
   showLog();
@@ -863,7 +855,6 @@ function setStep(stepName, state) {
   if (!el) return;
   el.classList.remove('active', 'done');
   if (state) el.classList.add(state);
-}
 }
 </script>
 
