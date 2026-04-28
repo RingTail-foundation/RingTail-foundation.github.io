@@ -1,1 +1,193 @@
-.download-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem}.download-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;transition:transform .2s,border-color .2s}.download-card:hover{transform:translateY(-3px);border-color:rgba(167,139,250,.4)}.download-icon{font-size:2.5rem;margin-bottom:1rem;display:block}.download-card h3{font-size:1.1rem;color:var(--pale)}.download-card p{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem}.version-picker-btn{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;padding:.65rem 1.5rem;border-radius:10px;font-weight:700;width:100%;justify-content:center;border:none;cursor:pointer}.version-panel{display:none;margin-top:.75rem;background:rgba(10,8,18,.95);border:1px solid rgba(167,139,250,.25);border-radius:12px;overflow:hidden;text-align:left}.version-panel.open{display:block}.version-row{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1rem;border-bottom:1px solid rgba(167,139,250,.08);cursor:pointer;gap:1rem}.version-row:hover{background:rgba(124,58,237,.1)}.version-dl-btn{background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:var(--electric);border-radius:8px;padding:.35rem .85rem}
+.download-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 18px;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  background: linear-gradient(180deg, rgba(22, 19, 42, 0.95), rgba(14, 11, 27, 0.95));
+}
+
+.release-chip {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  padding: 0.28rem 0.8rem;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: #0e1728;
+  background: #ffd343;
+}
+
+.download-hero-main h3 {
+  font-size: 2rem;
+  color: var(--pale);
+  margin-bottom: 0.35rem;
+}
+
+.release-meta {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.download-cta {
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1.25rem;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(180deg, #3aa655, #2c7a43);
+  box-shadow: 0 10px 30px rgba(44, 122, 67, 0.35);
+  cursor: pointer;
+}
+
+.download-cta:hover {
+  transform: translateY(-1px);
+}
+
+.cta-caption {
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  color: rgba(232, 227, 240, 0.75);
+}
+
+.download-hero-links {
+  border-left: 1px solid rgba(167, 139, 250, 0.18);
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.download-hero-links h4 {
+  color: var(--pale);
+  margin-bottom: 0.25rem;
+}
+
+.download-hero-links a {
+  color: var(--electric);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.download-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.download-card {
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.download-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(167,139,250,.4);
+}
+
+.download-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.45rem;
+  display: block;
+}
+
+.download-card h3 {
+  font-size: 1rem;
+  color: var(--pale);
+  margin-bottom: 0.4rem;
+}
+
+.download-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+  min-height: 42px;
+}
+
+.version-picker-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 0.45rem;
+  padding: 0.62rem 1rem;
+  border: 1px solid rgba(124,58,237,.4);
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.version-picker-btn .caret {
+  transition: transform 0.2s;
+}
+
+.version-picker-btn.open .caret {
+  transform: rotate(180deg);
+}
+
+.version-panel {
+  display: none;
+  margin-top: 0.7rem;
+  background: rgba(10,8,18,.95);
+  border: 1px solid rgba(167,139,250,.25);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.version-panel.open {
+  display: block;
+}
+
+.version-panel-header {
+  padding: 0.65rem 0.9rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(167,139,250,.12);
+}
+
+.version-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  cursor: pointer;
+}
+
+.version-row:hover {
+  background: rgba(124,58,237,.1);
+}
+
+.version-dl-btn {
+  border: 1px solid rgba(124,58,237,.4);
+  background: rgba(124,58,237,.2);
+  color: var(--electric);
+  border-radius: 8px;
+  padding: 0.3rem 0.72rem;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .download-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .download-hero-links {
+    border-left: none;
+    border-top: 1px solid rgba(167, 139, 250, 0.18);
+    padding-left: 0;
+    padding-top: 0.9rem;
+  }
+}
