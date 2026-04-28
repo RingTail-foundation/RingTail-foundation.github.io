@@ -1,0 +1,20 @@
+<section id="download">
+  <div class="section-label">// get ringtail</div><h2 class="section-title">Download</h2>
+  <p class="section-sub">RingTail is in early development. Click a platform to pick your version — then convert your .rar to .apk using the tool below.</p>
+  <div class="download-grid">
+    <div class="download-card"><span class="download-icon">🐧</span><h3>Linux</h3><p>Primary platform. Best supported. Works on most major distros.</p>
+      <button class="version-picker-btn" onclick="togglePicker('linux-panel', this)">⬇ Download for Linux <span class="caret">▾</span></button>
+      <div class="version-panel" id="linux-panel"><div class="version-panel-header">Select version</div><div class="version-row" onclick="triggerDownload('linux','0.0.1')"><div class="version-row-left"><span class="version-tag">v0.0.1</span><div><div class="version-label">Servo 0.0.1</div><div class="version-sublabel">Initial fork · Apr 25 2026</div></div></div><button class="version-dl-btn">↓ .rar</button></div></div>
+    </div>
+    <div class="download-card"><span class="download-icon">🪟</span><h3>Windows</h3><p>Early support. Unstable but functional. Feedback welcome.</p>
+      <button class="version-picker-btn" onclick="togglePicker('win-panel', this)">⬇ Download for Windows <span class="caret">▾</span></button>
+      <div class="version-panel" id="win-panel"><div class="version-panel-header">Select version</div><div class="version-row" onclick="triggerDownload('windows','0.0.1')"><div class="version-row-left"><span class="version-tag">v0.0.1</span><div><div class="version-label">Servo 0.0.1</div><div class="version-sublabel">Initial fork · Apr 25 2026</div></div></div><button class="version-dl-btn">↓ .rar</button></div></div>
+    </div>
+    <div class="download-card"><span class="download-icon">🤖</span><h3>Android</h3><p>APK available. Use the converter below to go from .rar → .zip → .apk good luck.</p>
+      <button class="version-picker-btn" onclick="togglePicker('android-panel', this)">⬇ Download APK <span class="caret">▾</span></button>
+      <div class="version-panel" id="android-panel"><div class="version-panel-header">Select version</div><div class="version-row" onclick="triggerDownload('android','0.0.1')"><div class="version-row-left"><span class="version-tag">v0.0.1</span><div><div class="version-label">Servo 0.0.1</div><div class="version-sublabel">Initial fork · Apr 25 2026</div></div></div><button class="version-dl-btn">↓ .rar</button></div></div>
+    </div>
+  </div>
+  <p class="download-note">All builds are open source — <a href="https://github.com/RingTail-foundation/RingTail" target="_blank" rel="noopener noreferrer">build from source on GitHub</a> ·
+    <a href="https://discord.gg/zaG6UkAXSA" target="_blank" rel="noopener noreferrer">get help on Discord</a></p>
+</section>
