@@ -680,39 +680,18 @@ function triggerDownload(platform, version) {
   const url = `https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases/download/${filename}`;
   log(`⬇ Fetching ${filename} for ${platform}…`, 'info');
 
-  // Try real fetch; if 404 (dev environment), simulate with a dummy blob
-  fetch(url)
-    .then(r => {
-      if (!r.ok) throw new Error('not found');
-      return r.blob();
-    })
-    .then(blob => {
-      downloadBlob(blob, filename);
-      log(`✓ Downloaded ${filename} — drop it in the converter below!`, 'ok');
-      showLog();
-      scrollToConverter();
-    })
-    .catch(() => {
-      // Dev fallback: create a placeholder .rar blob so the converter can demo
-      log(`⚠ Build server not reachable — generating placeholder ${filename} for converter demo.`, 'warn');
-      showLog();
-      const dummyContent = `RingTail ${platform} v${version} placeholder build\nThis is a demo .rar bundle.\nReal builds available on GitHub.`;
-      const blob = new Blob([dummyContent], { type: 'application/octet-stream' });
-      downloadBlob(blob, filename);
-      scrollToConverter();
-    });
-}
+ function triggerDownload(platform, version) {
+  const filename = `vservo.${version}.rar`;
 
-function downloadBlob(blob, name) {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = name;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
-}
+  const url =
+   `https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases/download/v${version}/${filename}`;
 
-function scrollToConverter() {
-  document.querySelector('.converter-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  log(`⬇ Redirecting to GitHub release...`, 'info');
+  showLog();
+
+  window.open(url, "_blank");
+
+  scrollToConverter();
 }
 
 // ─── CONVERTER ────────────────────────────────────────────────────
