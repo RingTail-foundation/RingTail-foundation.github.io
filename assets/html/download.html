@@ -1,68 +1,52 @@
-<section id="download">
-  <div class="section-label">// get ringtail</div>
-  <h2 class="section-title">Download RingTail</h2>
-  <p class="section-sub">Inspired by the straightforward download flow people expect: choose a stable release fast, then use platform-specific installers and release links below.</p>
-
-  <div class="download-hero-card">
-    <div class="download-hero-main">
-      <p class="release-chip">Latest stable release</p>
-      <h3>RingTail 0.0.1</h3>
-      <p class="release-meta">Released on April 25, 2026 · Experimental preview</p>
-      <button class="download-cta" onclick="triggerDownload('windows','0.0.1')">⬇ Download RingTail 0.0.1</button>
-      <p class="cta-caption">Recommended for Windows users. Additional installers available below.</p>
-    </div>
-    <div class="download-hero-links">
-      <h4>Release resources</h4>
-      <a href="https://github.com/RingTail-foundation/RingTail/releases" target="_blank" rel="noopener noreferrer">Release notes</a>
-      <a href="https://github.com/RingTail-foundation/RingTail" target="_blank" rel="noopener noreferrer">Source tarball</a>
-      <a href="https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases" target="_blank" rel="noopener noreferrer">All files</a>
-      <a href="#updates">Changelog</a>
-    </div>
+<section id="download" class="python-download">
+  <div class="py-head">
+    <h2 class="py-title">Downloads</h2>
+    <p class="py-subtitle">Get the latest RingTail release for your platform.</p>
   </div>
 
-  <div class="download-grid">
-    <div class="download-card">
-      <span class="download-icon">🪟</span>
-      <h3>Windows installer</h3>
-      <p>Best experience for most users right now.</p>
-      <button class="version-picker-btn" onclick="togglePicker('win-panel', this)">Choose Windows build <span class="caret">▾</span></button>
-      <div class="version-panel" id="win-panel">
-        <div class="version-panel-header">Windows builds</div>
-        <div class="version-row" onclick="triggerDownload('windows','0.0.1')">
-          <div class="version-row-left"><span class="version-tag">v0.0.1</span><div><div class="version-label">Stable preview</div><div class="version-sublabel">x64 · Apr 25, 2026</div></div></div>
-          <button class="version-dl-btn">Download</button>
-        </div>
-      </div>
-    </div>
+  <div class="py-hero">
+    <p class="py-release-label">Latest RingTail release: <strong>0.0.1</strong></p>
+    <button class="py-main-btn" onclick="triggerDownload('windows','0.0.1')">Download RingTail 0.0.1</button>
+    <p class="py-hero-note">This is an early preview build. For development snapshots and source artifacts, use the links below.</p>
+  </div>
 
-    <div class="download-card">
-      <span class="download-icon">🐧</span>
-      <h3>Linux package</h3>
-      <p>Primary developer platform and best-supported runtime.</p>
-      <button class="version-picker-btn" onclick="togglePicker('linux-panel', this)">Choose Linux build <span class="caret">▾</span></button>
-      <div class="version-panel" id="linux-panel">
-        <div class="version-panel-header">Linux builds</div>
-        <div class="version-row" onclick="triggerDownload('linux','0.0.1')">
-          <div class="version-row-left"><span class="version-tag">v0.0.1</span><div><div class="version-label">Stable preview</div><div class="version-sublabel">x86_64 · Apr 25, 2026</div></div></div>
-          <button class="version-dl-btn">Download</button>
-        </div>
+  <div class="py-grid">
+    <div class="py-card">
+      <h3>Download for your operating system</h3>
+      <div class="py-os-buttons">
+        <button class="py-os-btn" onclick="triggerDownload('windows','0.0.1')">Windows</button>
+        <button class="py-os-btn" onclick="triggerDownload('linux','0.0.1')">macOS/Linux</button>
+        <button class="py-os-btn" onclick="togglePicker('android-panel', this)">Android ▾</button>
       </div>
-    </div>
-
-    <div class="download-card">
-      <span class="download-icon">🤖</span>
-      <h3>Android package</h3>
-      <p>Use the converter below to produce installable APK files locally.</p>
-      <button class="version-picker-btn" onclick="togglePicker('android-panel', this)">Choose Android build <span class="caret">▾</span></button>
       <div class="version-panel" id="android-panel">
         <div class="version-panel-header">Android builds</div>
         <div class="version-row" onclick="triggerDownload('android','0.0.1')">
-          <div class="version-row-left"><span class="version-tag">v0.0.1</span><div><div class="version-label">Stable preview</div><div class="version-sublabel">arm64 · Apr 25, 2026</div></div></div>
+          <div class="version-row-left">
+            <span class="version-tag">v0.0.1</span>
+            <div>
+              <div class="version-label">Stable preview</div>
+              <div class="version-sublabel">arm64 · Apr 25, 2026</div>
+            </div>
+          </div>
           <button class="version-dl-btn">Download</button>
         </div>
       </div>
+      <p class="py-small-note">Need mobile install? Use the converter below to produce APK files locally.</p>
+    </div>
+
+    <div class="py-card">
+      <h3>Release files</h3>
+      <ul class="py-link-list">
+        <li><a href="https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases" target="_blank" rel="noopener noreferrer">All release files</a></li>
+        <li><a href="https://github.com/RingTail-foundation/RingTail/releases" target="_blank" rel="noopener noreferrer">Release notes</a></li>
+        <li><a href="https://github.com/RingTail-foundation/RingTail" target="_blank" rel="noopener noreferrer">Source code</a></li>
+        <li><a href="#updates">Full changelog</a></li>
+      </ul>
+      <h4 class="py-list-head">Recent releases</h4>
+      <ul class="py-release-list">
+        <li><a href="https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases/tag/v0.0.1" target="_blank" rel="noopener noreferrer">RingTail 0.0.1</a> <span>Apr 25, 2026</span></li>
+        <li><a href="https://github.com/RingTail-foundation/RingTail" target="_blank" rel="noopener noreferrer">Nightly (main branch)</a> <span>rolling</span></li>
+      </ul>
     </div>
   </div>
-
-  <p class="download-note">All builds are open source — <a href="https://github.com/RingTail-foundation/RingTail" target="_blank" rel="noopener noreferrer">build from source</a> · <a href="https://discord.gg/zaG6UkAXSA" target="_blank" rel="noopener noreferrer">get installation help</a></p>
 </section>

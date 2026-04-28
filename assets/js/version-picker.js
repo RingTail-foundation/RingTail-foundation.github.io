@@ -10,7 +10,7 @@ export function initVersionPicker(){
   }
 
   document.addEventListener('click', e => {
-    if (!e.target.closest('.download-card')) {
+    if (!e.target.closest('.download-card, .py-card')) {
       document.querySelectorAll('.version-panel').forEach(p => p.classList.remove('open'));
       document.querySelectorAll('.version-picker-btn').forEach(b => b.classList.remove('open'));
     }

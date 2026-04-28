@@ -1,146 +1,144 @@
-.download-hero-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  border-radius: 18px;
-  border: 1px solid rgba(167, 139, 250, 0.25);
-  background: linear-gradient(180deg, rgba(22, 19, 42, 0.95), rgba(14, 11, 27, 0.95));
+.python-download {
+  max-width: 1040px;
 }
 
-.release-chip {
-  display: inline-block;
-  margin-bottom: 0.6rem;
-  padding: 0.28rem 0.8rem;
-  border-radius: 999px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  color: #0e1728;
-  background: #ffd343;
+.py-head {
+  margin-bottom: 1.2rem;
 }
 
-.download-hero-main h3 {
-  font-size: 2rem;
-  color: var(--pale);
+.py-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #ffd343;
   margin-bottom: 0.35rem;
 }
 
-.release-meta {
-  color: var(--muted);
-  margin-bottom: 1rem;
+.py-subtitle {
+  color: #d7dce6;
+  font-size: 1.02rem;
 }
 
-.download-cta {
-  border: none;
-  border-radius: 10px;
-  padding: 0.9rem 1.25rem;
+.py-hero {
+  border: 1px solid #355171;
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #254565, #1b3550);
+}
+
+.py-release-label {
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.py-main-btn {
+  border: 1px solid #d09a1e;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #ffd343, #ffbd28);
+  color: #2b2520;
   font-weight: 800;
   font-size: 1rem;
-  color: #fff;
-  background: linear-gradient(180deg, #3aa655, #2c7a43);
-  box-shadow: 0 10px 30px rgba(44, 122, 67, 0.35);
+  padding: 0.75rem 1rem;
   cursor: pointer;
 }
 
-.download-cta:hover {
-  transform: translateY(-1px);
+.py-main-btn:hover {
+  filter: brightness(1.04);
 }
 
-.cta-caption {
+.py-hero-note {
   margin-top: 0.75rem;
-  font-size: 0.82rem;
-  color: rgba(232, 227, 240, 0.75);
+  color: #d7dce6;
+  font-size: 0.88rem;
 }
 
-.download-hero-links {
-  border-left: 1px solid rgba(167, 139, 250, 0.18);
-  padding-left: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.download-hero-links h4 {
-  color: var(--pale);
-  margin-bottom: 0.25rem;
-}
-
-.download-hero-links a {
-  color: var(--electric);
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.download-grid {
+.py-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
 
-.download-card {
-  background: rgba(255,255,255,.03);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.25rem;
-  transition: transform 0.2s, border-color 0.2s;
+.py-card {
+  border: 1px solid #2a3e58;
+  border-radius: 8px;
+  background: #14253a;
+  padding: 1rem;
 }
 
-.download-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(167,139,250,.4);
+.py-card h3 {
+  color: #ffd343;
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
 }
 
-.download-icon {
-  font-size: 1.8rem;
-  margin-bottom: 0.45rem;
-  display: block;
+.py-os-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
-.download-card h3 {
-  font-size: 1rem;
-  color: var(--pale);
-  margin-bottom: 0.4rem;
-}
-
-.download-card p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 0.9rem;
-  min-height: 42px;
-}
-
-.version-picker-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 0.45rem;
-  padding: 0.62rem 1rem;
-  border: 1px solid rgba(124,58,237,.4);
-  border-radius: 10px;
+.py-os-btn {
+  border: 1px solid #355171;
+  border-radius: 7px;
+  background: #1d3a57;
   color: #fff;
-  background: linear-gradient(135deg, var(--purple), var(--blue));
-  font-weight: 700;
+  padding: 0.6rem 0.85rem;
   cursor: pointer;
+  font-weight: 700;
 }
 
-.version-picker-btn .caret {
-  transition: transform 0.2s;
+.py-os-btn:hover {
+  background: #254565;
 }
 
-.version-picker-btn.open .caret {
-  transform: rotate(180deg);
+.py-small-note {
+  color: #c3ceda;
+  font-size: 0.83rem;
+  margin-top: 0.7rem;
+}
+
+.py-link-list,
+.py-release-list {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.py-link-list li,
+.py-release-list li {
+  margin: 0.32rem 0;
+  color: #d7dce6;
+}
+
+.py-link-list a,
+.py-release-list a {
+  color: #9fc4ff;
+  text-decoration: none;
+}
+
+.py-link-list a:hover,
+.py-release-list a:hover {
+  text-decoration: underline;
+}
+
+.py-list-head {
+  color: #ffd343;
+  margin-top: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.py-release-list span {
+  color: #8fa2b7;
+  margin-left: 0.4rem;
+  font-size: 0.82rem;
 }
 
 .version-panel {
   display: none;
-  margin-top: 0.7rem;
-  background: rgba(10,8,18,.95);
-  border: 1px solid rgba(167,139,250,.25);
-  border-radius: 10px;
+  margin-top: 0.55rem;
+  border: 1px solid #355171;
+  border-radius: 8px;
   overflow: hidden;
+  background: #102033;
 }
 
 .version-panel.open {
@@ -148,46 +146,62 @@
 }
 
 .version-panel-header {
-  padding: 0.65rem 0.9rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  text-transform: uppercase;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.7rem;
   letter-spacing: 0.08em;
-  color: var(--muted);
-  border-bottom: 1px solid rgba(167,139,250,.12);
+  text-transform: uppercase;
+  color: #8fa2b7;
+  border-bottom: 1px solid #2a3e58;
 }
 
 .version-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.8rem 0.9rem;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.72rem;
   cursor: pointer;
 }
 
 .version-row:hover {
-  background: rgba(124,58,237,.1);
+  background: #16304b;
+}
+
+.version-row-left {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.version-tag {
+  background: #2a3e58;
+  border: 1px solid #3e5f83;
+  border-radius: 6px;
+  color: #ffd343;
+  font-size: 0.74rem;
+  padding: 0.2rem 0.45rem;
+}
+
+.version-label {
+  color: #ecf0f5;
+}
+
+.version-sublabel {
+  color: #8fa2b7;
+  font-size: 0.78rem;
 }
 
 .version-dl-btn {
-  border: 1px solid rgba(124,58,237,.4);
-  background: rgba(124,58,237,.2);
-  color: var(--electric);
-  border-radius: 8px;
-  padding: 0.3rem 0.72rem;
-  font-size: 0.8rem;
+  border: 1px solid #3e5f83;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  background: #1f4060;
+  color: #fff;
+  font-size: 0.78rem;
 }
 
-@media (max-width: 900px) {
-  .download-hero-card {
+@media (max-width: 860px) {
+  .py-grid {
     grid-template-columns: 1fr;
-  }
-
-  .download-hero-links {
-    border-left: none;
-    border-top: 1px solid rgba(167, 139, 250, 0.18);
-    padding-left: 0;
-    padding-top: 0.9rem;
   }
 }
