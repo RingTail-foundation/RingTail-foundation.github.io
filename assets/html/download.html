@@ -1,0 +1,52 @@
+<section id="download" class="python-download">
+  <div class="py-head">
+    <h2 class="py-title">Downloads</h2>
+    <p class="py-subtitle">Get the latest RingTail release for your platform.</p>
+  </div>
+
+  <div class="py-hero">
+    <p class="py-release-label">Latest RingTail release: <strong>0.0.1</strong></p>
+    <button class="py-main-btn" onclick="triggerDownload('windows','0.0.1')">Download RingTail 0.0.1</button>
+    <p class="py-hero-note">This is an early preview build. For development snapshots and source artifacts, use the links below.</p>
+  </div>
+
+  <div class="py-grid">
+    <div class="py-card">
+      <h3>Download for your operating system</h3>
+      <div class="py-os-buttons">
+        <button class="py-os-btn" onclick="triggerDownload('windows','0.0.1')">Windows</button>
+        <button class="py-os-btn" onclick="triggerDownload('linux','0.0.1')">macOS/Linux</button>
+        <button class="py-os-btn" onclick="togglePicker('android-panel', this)">Android ▾</button>
+      </div>
+      <div class="version-panel" id="android-panel">
+        <div class="version-panel-header">Android builds</div>
+        <div class="version-row" onclick="triggerDownload('android','0.0.1')">
+          <div class="version-row-left">
+            <span class="version-tag">v0.0.1</span>
+            <div>
+              <div class="version-label">Stable preview</div>
+              <div class="version-sublabel">arm64 · Apr 25, 2026</div>
+            </div>
+          </div>
+          <button class="version-dl-btn">Download</button>
+        </div>
+      </div>
+      <p class="py-small-note">Need mobile install? Use the converter below to produce APK files locally.</p>
+    </div>
+
+    <div class="py-card">
+      <h3>Release files</h3>
+      <ul class="py-link-list">
+        <li><a href="https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases" target="_blank" rel="noopener noreferrer">All release files</a></li>
+        <li><a href="https://github.com/RingTail-foundation/RingTail/releases" target="_blank" rel="noopener noreferrer">Release notes</a></li>
+        <li><a href="https://github.com/RingTail-foundation/RingTail" target="_blank" rel="noopener noreferrer">Source code</a></li>
+        <li><a href="#updates">Full changelog</a></li>
+      </ul>
+      <h4 class="py-list-head">Recent releases</h4>
+      <ul class="py-release-list">
+        <li><a href="https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases/tag/v0.0.1" target="_blank" rel="noopener noreferrer">RingTail 0.0.1</a> <span>Apr 25, 2026</span></li>
+        <li><a href="https://github.com/RingTail-foundation/RingTail" target="_blank" rel="noopener noreferrer">Nightly (main branch)</a> <span>rolling</span></li>
+      </ul>
+    </div>
+  </div>
+</section>

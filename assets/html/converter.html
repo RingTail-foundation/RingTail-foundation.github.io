@@ -1,0 +1,16 @@
+<div class="converter-section">
+  <div class="section-label" style="text-align:center; margin-bottom:1.5rem;">// file converter</div>
+  <div class="converter-card">
+    <div class="converter-title">🦝 RAR → ZIP → APK Converter</div>
+    <div class="converter-sub">Downloaded a .rar build? Drop it below. We'll convert it to .zip, then rename it to a proper .apk ready to sideload on Android — all in your browser, nothing uploaded anywhere.</div>
+    <div class="pipeline">
+      <div class="pipe-step"><div class="pipe-icon" id="step-rar">📦</div><div class="pipe-label">.rar input</div></div><div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="pipe-icon" id="step-extract">🔓</div><div class="pipe-label">extract</div></div><div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="pipe-icon" id="step-zip">🗜️</div><div class="pipe-label">.zip pack</div></div><div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="pipe-icon" id="step-apk">📱</div><div class="pipe-label">.apk ready</div></div>
+    </div>
+    <div class="converter-drop" id="dropzone"><input type="file" accept=".rar,.zip" id="fileInput"><span class="drop-icon">📂</span><div class="drop-title">Drop your .rar or .zip file here</div><div class="drop-sub">or click to browse · .rar and .zip accepted</div></div>
+    <div class="converter-log" id="convLog"></div>
+    <button class="convert-btn" id="convertBtn">🔄 Convert to .apk</button>
+  </div>
+</div>
