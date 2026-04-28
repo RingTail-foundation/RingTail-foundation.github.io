@@ -677,8 +677,7 @@ document.addEventListener('click', e => {
 function triggerDownload(platform, version) {
   // Real path structure: apk_version/vservo.{version}.apk (as .rar)
   const filename = `vservo.${version}.rar`;
-  const url = `apk_version/${filename}`;
-
+  const url = `https://github.com/RingTail-foundation/RingTail-foundation.github.io/releases/download/${filename}`;
   log(`⬇ Fetching ${filename} for ${platform}…`, 'info');
 
   // Try real fetch; if 404 (dev environment), simulate with a dummy blob
