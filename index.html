@@ -181,6 +181,35 @@
   .update-content p { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
   .update-date { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(157,143,192,0.5); white-space: nowrap; padding-top: 0.1rem; }
 
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  .trust-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem;
+  }
+  .trust-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--pale);
+    margin-bottom: 0.45rem;
+  }
+  .trust-card p {
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .trust-meta {
+    margin-top: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--electric);
+  }
+
   /* ─── DOWNLOAD SECTION ─── */
   .download-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
 
@@ -379,6 +408,7 @@
   <ul class="nav-links">
     <li><a href="#news">News</a></li>
     <li><a href="#updates">Updates</a></li>
+    <li><a href="#security">Security</a></li>
     <li><a href="#download">Download</a></li>
     <li><a href="https://github.com/RingTail-foundation" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     <li><a href="https://discord.gg/zaG6UkAXSA" target="_blank" rel="noopener noreferrer">Discord</a></li>
@@ -492,6 +522,32 @@
       </div>
       <span class="update-date">Coming soon</span>
     </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECURITY -->
+<section id="security">
+  <div class="section-label">// security + trust</div>
+  <h2 class="section-title">Security you can verify</h2>
+  <p class="section-sub">Important promise: RingTail will be transparent by default. We publish source, document known risks, and keep ownership in public.</p>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <h3>Open-source releases</h3>
+      <p>Every downloadable build maps to a public Git commit. Anyone can inspect changes, audit dependencies, and rebuild locally.</p>
+      <div class="trust-meta">Policy: source first, binaries second</div>
+    </div>
+    <div class="trust-card">
+      <h3>No silent telemetry</h3>
+      <p>RingTail will not ship background analytics without explicit opt-in. If data collection is needed for a feature, it will be documented clearly.</p>
+      <div class="trust-meta">Default: private unless you choose otherwise</div>
+    </div>
+    <div class="trust-card">
+      <h3>Responsible disclosure</h3>
+      <p>Found a security issue? Report it privately so users can be protected before public disclosure. We will acknowledge reports and track fixes publicly.</p>
+      <div class="trust-meta">Email: security@ringtail.peanut</div>
+    </div>
   </div>
 </section>
 
@@ -645,6 +701,7 @@
     <a href="https://x.com/ServoRingTail" target="_blank" rel="noopener noreferrer">Twitter</a>
     <a href="#news">News</a>
     <a href="#updates">Updates</a>
+    <a href="#security">Security</a>
   </div>
 </footer>
 
