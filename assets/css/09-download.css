@@ -1,0 +1,207 @@
+.python-download {
+  max-width: 1040px;
+}
+
+.py-head {
+  margin-bottom: 1.2rem;
+}
+
+.py-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: #ffd343;
+  margin-bottom: 0.35rem;
+}
+
+.py-subtitle {
+  color: #d7dce6;
+  font-size: 1.02rem;
+}
+
+.py-hero {
+  border: 1px solid #355171;
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #254565, #1b3550);
+}
+
+.py-release-label {
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.py-main-btn {
+  border: 1px solid #d09a1e;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #ffd343, #ffbd28);
+  color: #2b2520;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+}
+
+.py-main-btn:hover {
+  filter: brightness(1.04);
+}
+
+.py-hero-note {
+  margin-top: 0.75rem;
+  color: #d7dce6;
+  font-size: 0.88rem;
+}
+
+.py-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.py-card {
+  border: 1px solid #2a3e58;
+  border-radius: 8px;
+  background: #14253a;
+  padding: 1rem;
+}
+
+.py-card h3 {
+  color: #ffd343;
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+}
+
+.py-os-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.py-os-btn {
+  border: 1px solid #355171;
+  border-radius: 7px;
+  background: #1d3a57;
+  color: #fff;
+  padding: 0.6rem 0.85rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.py-os-btn:hover {
+  background: #254565;
+}
+
+.py-small-note {
+  color: #c3ceda;
+  font-size: 0.83rem;
+  margin-top: 0.7rem;
+}
+
+.py-link-list,
+.py-release-list {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.py-link-list li,
+.py-release-list li {
+  margin: 0.32rem 0;
+  color: #d7dce6;
+}
+
+.py-link-list a,
+.py-release-list a {
+  color: #9fc4ff;
+  text-decoration: none;
+}
+
+.py-link-list a:hover,
+.py-release-list a:hover {
+  text-decoration: underline;
+}
+
+.py-list-head {
+  color: #ffd343;
+  margin-top: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.py-release-list span {
+  color: #8fa2b7;
+  margin-left: 0.4rem;
+  font-size: 0.82rem;
+}
+
+.version-panel {
+  display: none;
+  margin-top: 0.55rem;
+  border: 1px solid #355171;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #102033;
+}
+
+.version-panel.open {
+  display: block;
+}
+
+.version-panel-header {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8fa2b7;
+  border-bottom: 1px solid #2a3e58;
+}
+
+.version-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.72rem;
+  cursor: pointer;
+}
+
+.version-row:hover {
+  background: #16304b;
+}
+
+.version-row-left {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.version-tag {
+  background: #2a3e58;
+  border: 1px solid #3e5f83;
+  border-radius: 6px;
+  color: #ffd343;
+  font-size: 0.74rem;
+  padding: 0.2rem 0.45rem;
+}
+
+.version-label {
+  color: #ecf0f5;
+}
+
+.version-sublabel {
+  color: #8fa2b7;
+  font-size: 0.78rem;
+}
+
+.version-dl-btn {
+  border: 1px solid #3e5f83;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  background: #1f4060;
+  color: #fff;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 860px) {
+  .py-grid {
+    grid-template-columns: 1fr;
+  }
+}
