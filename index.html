@@ -372,16 +372,16 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">A racoon</div>
-    <span class="nav-logo-text">RingTail browser
-    powered by RingTail foundation</span>
+    <div class="nav-logo-icon">🦝</div>
+    <span class="nav-logo-text">RingTail Browser
+    <small style="display:block;font-size:0.72rem;color:var(--muted);font-weight:600;line-height:1.25;">Powered by RingTail Foundation</small></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#news">News (not added)</a></li>
-    <li><a href="#updates">Updates (not added)</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#updates">Updates</a></li>
     <li><a href="#download">Download</a></li>
-    <li><a href="https://github.com/RingTail-foundation" target="_blank">GitHub</a></li>
-    <li><a href="https://discord.gg/zaG6UkAXSA" target="_blank">Discord</a></li>
+    <li><a href="https://github.com/RingTail-foundation" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    <li><a href="https://discord.gg/zaG6UkAXSA" target="_blank" rel="noopener noreferrer">Discord</a></li>
     <li><a href="#download" class="nav-download">Get RingTail</a></li>
   </ul>
 </nav>
@@ -403,7 +403,7 @@
   </p>
   <div class="hero-actions">
     <a href="#download" class="btn-primary">⬇ Download RingTail</a>
-    <a href="https://github.com/RingTail-foundation" target="_blank" class="btn-secondary">★ Star on GitHub</a>
+    <a href="https://github.com/RingTail-foundation" target="_blank" rel="noopener noreferrer" class="btn-secondary">★ Star on GitHub</a>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Rust stack</div></div>
@@ -575,8 +575,8 @@
 
   </div>
   <p class="download-note">
-    All builds are open source — <a href="https://github.com/RingTail-foundation/RingTail" target="_blank">build from source on GitHub</a> ·
-    <a href="https://discord.gg/zaG6UkAXSA" target="_blank">get help on Discord</a>
+    All builds are open source — <a href="https://github.com/RingTail-foundation/RingTail" target="_blank" rel="noopener noreferrer">build from source on GitHub</a> ·
+    <a href="https://discord.gg/zaG6UkAXSA" target="_blank" rel="noopener noreferrer">get help on Discord</a>
   </p>
 </section>
 
@@ -622,7 +622,7 @@
          ondrop="handleDrop(event)">
       <input type="file" accept=".rar,.zip" onchange="handleFileSelect(event)" id="fileInput">
       <span class="drop-icon">📂</span>
-      <div class="drop-title">Drop your .rar file here</div>
+      <div class="drop-title">Drop your .rar or .zip file here</div>
       <div class="drop-sub">or click to browse · .rar and .zip accepted</div>
     </div>
 
@@ -640,9 +640,9 @@
 <footer>
   <div class="footer-left">© 2026 <strong>RingTail Foundation</strong> · Built in Rust · MPL-2.0</div>
   <div class="footer-links">
-    <a href="https://github.com/RingTail-foundation" target="_blank">GitHub</a>
-    <a href="https://discord.gg/zaG6UkAXSA" target="_blank">Discord</a>
-    <a href="https://x.com/ServoRingTail" target="_blank">Twitter</a>
+    <a href="https://github.com/RingTail-foundation" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://discord.gg/zaG6UkAXSA" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="https://x.com/ServoRingTail" target="_blank" rel="noopener noreferrer">Twitter</a>
     <a href="#news">News</a>
     <a href="#updates">Updates</a>
   </div>
@@ -682,7 +682,7 @@ function triggerDownload(platform, version) {
   log(`⬇ Redirecting to GitHub release...`, 'info');
   showLog();
 
-  window.open(url, "_blank");
+  window.open(url, "_blank", "noopener,noreferrer");
 
   scrollToConverter();
 }
@@ -725,7 +725,8 @@ function loadFile(file) {
   clearLog();
   log(`📦 Loaded: ${file.name}`, 'info');
   log(`→ Pipeline: ${ext.toUpperCase()} → ${ext === 'rar' ? 'ZIP → APK' : 'APK'}`, 'info');
-  setStep('rar');
+  resetSteps();
+  setStep(ext === 'rar' ? 'rar' : 'zip', 'active');
 }
 
 async function runConvert() {
@@ -740,6 +741,13 @@ async function runConvert() {
 
   const ext = selectedFile.name.split('.').pop().toLowerCase();
   const baseName = selectedFile.name.replace(/\.(rar|zip)$/i, '');
+
+  if (ext === 'rar' && (!window.fflate || typeof fflate.zip !== 'function')) {
+    log('⚠ Compression library not available. Please retry after refreshing the page.', 'warn');
+    btn.disabled = false;
+    btn.textContent = '🔄 Convert to .apk';
+    return;
+  }
 
   try {
     let zipBytes;
@@ -847,6 +855,14 @@ function log(msg, type = '') {
   line.textContent = `[${ts}] ${msg}`;
   el.appendChild(line);
   el.scrollTop = el.scrollHeight;
+}
+
+
+function resetSteps() {
+  ['step-rar', 'step-extract', 'step-zip', 'step-apk'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('active', 'done');
+  });
 }
 
 function setStep(stepName, state) {
