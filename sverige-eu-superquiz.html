@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sveriges politiska system & EU — Superquiz</title>
+  <style>
+    :root {
+      --bg: #110b2e;
+      --bg-2: #20104d;
+      --card: rgba(255,255,255,.11);
+      --card-strong: rgba(255,255,255,.18);
+      --text: #fff8ff;
+      --muted: #d9ccff;
+      --pink: #ff4fd8;
+      --yellow: #ffd84f;
+      --green: #47f5a6;
+      --blue: #55c7ff;
+      --purple: #9b6dff;
+      --danger: #ff6b6b;
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+      --radius: 28px;
+      font-family: Inter, ui-rounded, "Comic Sans MS", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 14%, rgba(255,79,216,.35), transparent 28rem),
+        radial-gradient(circle at 88% 10%, rgba(85,199,255,.28), transparent 30rem),
+        radial-gradient(circle at 55% 90%, rgba(71,245,166,.18), transparent 28rem),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 55%, #091d41);
+      overflow-x: hidden;
+    }
+
+    .stars, .stars::before, .stars::after {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.85) 0 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,216,79,.8) 0 1px, transparent 1.5px);
+      background-size: 110px 110px, 180px 180px;
+      animation: drift 18s linear infinite;
+      opacity: .45;
+    }
+
+    .stars::before, .stars::after { content: ""; }
+    .stars::before { transform: scale(1.4); animation-duration: 28s; opacity: .25; }
+    .stars::after { transform: scale(.8); animation-duration: 12s; opacity: .35; }
+
+    @keyframes drift { to { translate: -120px 120px; } }
+
+    header {
+      position: relative;
+      padding: 42px clamp(18px, 4vw, 72px) 20px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.2);
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px auto 10px;
+      max-width: 1000px;
+      font-size: clamp(2.2rem, 7vw, 5.7rem);
+      line-height: .9;
+      letter-spacing: -.07em;
+      text-wrap: balance;
+    }
+
+    .rainbow {
+      background: linear-gradient(90deg, var(--yellow), var(--green), var(--blue), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 20px rgba(255,255,255,.18));
+    }
+
+    .intro {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      line-height: 1.55;
+    }
+
+    main {
+      position: relative;
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto 50px;
+    }
+
+    .hud {
+      position: sticky;
+      top: 10px;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 22px;
+      background: rgba(15,9,43,.78);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      text-align: center;
+    }
+
+    .stat span { display: block; color: var(--muted); font-size: .82rem; font-weight: 800; text-transform: uppercase; }
+    .stat strong { display: block; margin-top: 4px; font-size: 1.45rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255,255,255,.15), rgba(255,255,255,.07));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-inner { padding: clamp(18px, 4vw, 34px); }
+
+    .mode-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      color: #150721;
+      background: var(--yellow);
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 10px 0 rgba(0,0,0,.22), 0 0 24px rgba(255,216,79,.25);
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    }
+
+    button:hover { transform: translateY(-2px) rotate(-1deg); filter: brightness(1.05); }
+    button:active { transform: translateY(5px); box-shadow: 0 4px 0 rgba(0,0,0,.25); }
+    button.secondary { background: var(--blue); }
+    button.pink { background: var(--pink); color: white; }
+    button.green { background: var(--green); }
+    button.ghost { color: var(--text); background: rgba(255,255,255,.12); box-shadow: none; border: 1px solid rgba(255,255,255,.17); }
+
+    .question-card {
+      min-height: 390px;
+      display: grid;
+      align-content: center;
+      gap: 18px;
+    }
+
+    .category {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(85,199,255,.17);
+      color: #b9edff;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: .8rem;
+    }
+
+    .question {
+      margin: 0;
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+    }
+
+    .answer {
+      min-height: 94px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.5;
+    }
+
+    .answer.hidden {
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,.52);
+      border: 2px dashed rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+
+    .answers {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .choice {
+      width: 100%;
+      border-radius: 20px;
+      padding: 16px;
+      text-align: left;
+      color: var(--text);
+      background: rgba(255,255,255,.12);
+      box-shadow: none;
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
+    .choice.correct { background: rgba(71,245,166,.24); border-color: var(--green); }
+    .choice.wrong { background: rgba(255,107,107,.25); border-color: var(--danger); }
+
+    .map {
+      display: grid;
+      gap: 14px;
+    }
+
+    .quest-list {
+      display: grid;
+      gap: 10px;
+      max-height: 610px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .quest-pill {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.11);
+      cursor: pointer;
+    }
+
+    .quest-pill:hover { background: rgba(255,255,255,.14); }
+    .quest-pill.done { border-color: rgba(71,245,166,.65); }
+    .quest-pill b { color: var(--yellow); }
+    .quest-pill small { color: var(--muted); }
+
+    .mini-games {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .mini-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
+    .mini-card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+    .mini-card p { margin: 0; color: var(--muted); line-height: 1.45; }
+
+    .arena {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .drop-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .drop-zone {
+      min-height: 170px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.08);
+      border: 2px dashed rgba(255,255,255,.2);
+    }
+
+    .drop-zone h3 { margin: 0 0 10px; }
+    .chip-bank, .chip-stack { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .chip {
+      user-select: none;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      color: #fff;
+      font-weight: 900;
+      cursor: grab;
+    }
+
+    .chip.dragging { opacity: .45; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 20;
+      transform: translateX(-50%) translateY(130%);
+      max-width: min(92vw, 620px);
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: #fff;
+      color: #21103f;
+      font-weight: 950;
+      box-shadow: var(--shadow);
+      transition: transform .22s ease;
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    .confetti-piece {
+      position: fixed;
+      top: -20px;
+      z-index: 30;
+      width: 10px;
+      height: 16px;
+      border-radius: 3px;
+      animation: confetti 1.35s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes confetti {
+      to { translate: var(--x) 110vh; rotate: 720deg; opacity: .1; }
+    }
+
+    footer {
+      position: relative;
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto 40px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .hud, .grid, .mini-games, .drop-grid { grid-template-columns: 1fr; }
+      .hud { position: static; }
+      .question-card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <header>
+    <div class="badge">🇸🇪 ⚡ 🇪🇺 Provträning deluxe</div>
+    <h1>Sveriges politiska system <span class="rainbow">& EU Superquiz</span></h1>
+    <p class="intro">Träna allt från riksdag, regering och grundlagar till EU:s fyra friheter med quiz, flashcards, drag-and-drop och bossfight. Målet: samla XP, bygg en streak och gör samhällskunskap superduperkul.</p>
+  </header>
+
+  <main>
+    <section class="hud" aria-label="Spelstatus">
+      <div class="stat"><span>XP</span><strong id="xp">0</strong></div>
+      <div class="stat"><span>Streak</span><strong id="streak">0 🔥</strong></div>
+      <div class="stat"><span>Avklarat</span><strong id="done">0/0</strong></div>
+      <div class="stat"><span>Level</span><strong id="level">1</strong></div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <div class="panel-inner question-card">
+          <span class="category" id="category">Start</span>
+          <h2 class="question" id="question">Redo att bli demokratininja?</h2>
+          <div class="answer hidden" id="answer">Välj ett spelläge för att börja.</div>
+          <div class="answers" id="answers"></div>
+          <div class="mode-row">
+            <button id="flashBtn">🃏 Flashcard</button>
+            <button class="secondary" id="quizBtn">🎮 Quiz</button>
+            <button class="pink" id="bossBtn">👑 Bossfight</button>
+            <button class="ghost" id="revealBtn">Visa svar</button>
+            <button class="green" id="gotItBtn">Jag kunde den!</button>
+            <button class="ghost" id="nextBtn">Nästa ➜</button>
+          </div>
+        </div>
+      </article>
+
+      <aside class="panel">
+        <div class="panel-inner map">
+          <h2>🗺️ Kunskapskarta</h2>
+          <p class="intro" style="text-align:left;margin:0">Klicka på en fråga för att hoppa dit. Gröna ramar betyder att du markerat den som avklarad.</p>
+          <div class="quest-list" id="questList"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="mini-games">
+      <div class="mini-card"><h3>🧠 Snabbminne</h3><p>Flashcards gömmer svaret. Säg svaret högt, klicka visa och markera om du kunde.</p></div>
+      <div class="mini-card"><h3>⚔️ Bossfight</h3><p>Fem slumpfrågor i rad. Varje rätt svar ger bonus-XP och konfetti.</p></div>
+      <div class="mini-card"><h3>🧲 Sortera</h3><p>Dra begreppen till rätt låda: Sverige eller EU. Perfekt repetition innan provet.</p></div>
+    </section>
+
+    <section class="panel arena" aria-label="Sorteringsspel">
+      <h2>🧲 Sortera begreppen: Sverige eller EU?</h2>
+      <p class="intro" style="text-align:left;margin:0 0 16px">Dra varje chip till rätt zon och tryck på kontrollera. Tips: riksdag hör till Sverige, EU-parlamentet hör till EU.</p>
+      <div class="chip-bank" id="chipBank"></div>
+      <div class="drop-grid" style="margin-top:16px">
+        <div class="drop-zone" data-zone="Sverige"><h3>🇸🇪 Sverige</h3><div class="chip-stack"></div></div>
+        <div class="drop-zone" data-zone="EU"><h3>🇪🇺 EU</h3><div class="chip-stack"></div></div>
+      </div>
+      <div class="mode-row"><button class="green" id="checkSortBtn">Kontrollera sortering</button><button class="ghost" id="resetSortBtn">Blanda om</button></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Byggd som en rolig pluggapp för frågorna om Sveriges politiska system och EU. Dina poäng sparas i webbläsaren.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const cards = [
+      { cat: 'Val', q: 'Vilka politiska församlingar kan vi rösta fram representanter till i Sverige och Europa?', a: 'I Sverige röstar vi till riksdagen, regionen och kommunen vart fjärde år. I Europa röstar vi till EU-parlamentet vart femte år.' },
+      { cat: 'Riksdagen', q: 'Ange två av riksdagens uppgifter.', a: 'Riksdagen stiftar lagar, beslutar om statens budget, utser statsminister och granskar regeringen.' },
+      { cat: 'Statschef', q: 'Vem är Sveriges statschef?', a: 'Sveriges statschef är kungen.' },
+      { cat: 'Grundlagar', q: 'Vad är speciellt med grundlagarna?', a: 'Grundlagarna reglerar Sveriges demokratiska system, är svåra att ändra och andra lagar får inte strida mot dem. Två riksdagar måste fatta beslut med ett val emellan.' },
+      { cat: 'Rösträtt', q: 'Vilka har rösträtt i Sverige?', a: 'Svenska medborgare som fyllt 18 år senast på valdagen. I kommun- och regionval kan även vissa bosatta rösta, till exempel efter tre års bosättning i kommunen.' },
+      { cat: 'Mandat', q: 'Hur många platser i riksdagen får ett parti som får 20 procent av rösterna?', a: '20 procent av 349 mandat är ungefär 70 platser.' },
+      { cat: 'Statsminister', q: 'Vem beslutar om vem som blir statsminister?', a: 'Riksdagen utser statsminister.' },
+      { cat: 'Regering', q: 'Vem bildar regering?', a: 'Statsministern bildar regering. Regeringens medlemmar kallas ministrar eller statsråd.' },
+      { cat: 'Majoritet', q: 'Hur många röster behövs för att få majoritet i riksdagen?', a: 'Det behövs 175 röster av riksdagens 349 ledamöter.' },
+      { cat: 'Regeringstyper', q: 'Beskriv två olika regeringstyper.', a: 'Majoritetsregering har stöd av mer än hälften av ledamöterna. Minoritetsregering saknar egen majoritet och måste komma överens med andra partier. Samlingsregering innebär att flera eller alla partier går ihop, vilket är ovanligt.' },
+      { cat: 'Parlamentarism', q: 'Vad är parlamentarism?', a: 'Parlamentarism betyder att regeringen måste accepteras av riksdagen. Riksdagen är Sveriges parlament.' },
+      { cat: 'Lagförslag', q: 'Vad är en proposition?', a: 'En proposition är ett lagförslag från regeringen.' },
+      { cat: 'Lagförslag', q: 'Vad är en motion?', a: 'En motion är ett förslag från en eller flera riksdagsledamöter.' },
+      { cat: 'Utskott', q: 'Namnge tre utskott.', a: 'Exempel: utbildningsutskottet, trafikutskottet och försvarsutskottet.' },
+      { cat: 'Departement', q: 'Namnge tre departement.', a: 'Exempel: utbildningsdepartementet, försvarsdepartementet och kulturdepartementet.' },
+      { cat: 'Förvaltning', q: 'Vilket syfte har förvaltningen?', a: 'Förvaltningen genomför politiska beslut. Regeringen ger förvaltningen uppdrag som ska genomföras.' },
+      { cat: 'Kommun & region', q: 'Vad heter den beslutande församlingen i en kommun och i en region?', a: 'I en kommun heter den kommunfullmäktige. I en region heter den regionfullmäktige.' },
+      { cat: 'Grundlagar', q: 'Vilka är de fyra grundlagarna?', a: 'Regeringsformen, successionsordningen, tryckfrihetsförordningen och yttrandefrihetsgrundlagen.' },
+      { cat: 'EU-idé', q: 'Vilken är den bakomliggande idén med EU?', a: 'Tanken är att länder som handlar och samarbetar med varandra inte krigar med varandra.' },
+      { cat: 'EU', q: 'Hur många medlemsstater har EU?', a: 'EU har 27 medlemsländer.' },
+      { cat: 'EU-institutioner', q: 'Vilka tre institutioner inom EU har stor makt?', a: 'Ministerrådet, EU-kommissionen och EU-parlamentet.' },
+      { cat: 'EU-parlamentet', q: 'Hur utses politikerna i EU-parlamentet?', a: 'De väljs i allmänna val vart femte år i varje EU-land.' },
+      { cat: 'EU:s friheter', q: 'Vilka är EU:s fyra friheter? Beskriv en av dem.', a: 'De fyra friheterna är varor, tjänster, kapital och människor. Människor får till exempel arbeta och bosätta sig i andra EU-länder utan visum och arbetstillstånd.' },
+      { cat: 'EU-debatt', q: 'Ange några för- och nackdelar med EU.', a: 'Fördelar: enklare att bo, arbeta och handla i andra EU-länder samt bättre villkor för företag. Nackdelar: beslut flyttas från Sverige och öppna gränser kan underlätta gränsöverskridande kriminalitet.' },
+      { cat: 'Rättsstat', q: 'Vilka länder får kritik för att inte följa rättsstatsprincipen? Varför?', a: 'Ungern har kritiserats för brister kring mänskliga rättigheter och rättsstat. Polen har också fått kritik, bland annat kopplat till hbtq-frågor och rättsväsendets oberoende.' }
+    ];
+
+    const sortItems = [
+      ['Riksdagen', 'Sverige'], ['Kommunfullmäktige', 'Sverige'], ['Regionfullmäktige', 'Sverige'], ['Grundlagarna', 'Sverige'], ['Statsminister', 'Sverige'], ['EU-parlamentet', 'EU'], ['EU-kommissionen', 'EU'], ['Ministerrådet', 'EU'], ['Fyra friheter', 'EU'], ['27 medlemsländer', 'EU']
+    ];
+
+    const state = JSON.parse(localStorage.getItem('superquiz-state') || '{"xp":0,"streak":0,"done":[]}');
+    let current = 0;
+    let mode = 'flash';
+    let bossLeft = 0;
+
+    const el = id => document.getElementById(id);
+    const random = max => Math.floor(Math.random() * max);
+
+    function save() { localStorage.setItem('superquiz-state', JSON.stringify(state)); }
+
+    function updateHud() {
+      el('xp').textContent = state.xp;
+      el('streak').textContent = `${state.streak} 🔥`;
+      el('done').textContent = `${state.done.length}/${cards.length}`;
+      el('level').textContent = Math.max(1, Math.floor(state.xp / 120) + 1);
+      renderQuestList();
+    }
+
+    function toast(message) {
+      el('toast').textContent = message;
+      el('toast').classList.add('show');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => el('toast').classList.remove('show'), 2200);
+    }
+
+    function confetti() {
+      const colors = ['#ff4fd8', '#ffd84f', '#47f5a6', '#55c7ff', '#9b6dff'];
+      for (let i = 0; i < 48; i++) {
+        const piece = document.createElement('span');
+        piece.className = 'confetti-piece';
+        piece.style.left = `${random(100)}vw`;
+        piece.style.background = colors[random(colors.length)];
+        piece.style.setProperty('--x', `${random(240) - 120}px`);
+        piece.style.animationDelay = `${Math.random() * .25}s`;
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 1700);
+      }
+    }
+
+    function renderCard(showAnswer = false) {
+      const card = cards[current];
+      el('category').textContent = `${card.cat} • fråga ${current + 1}/${cards.length}`;
+      el('question').textContent = card.q;
+      el('answers').innerHTML = '';
+      el('answer').className = showAnswer ? 'answer' : 'answer hidden';
+      el('answer').textContent = showAnswer ? card.a : '🤫 Svaret är gömt. Försök säga det innan du tjuvkikar!';
+    }
+
+    function renderQuiz() {
+      mode = 'quiz';
+      const card = cards[current];
+      renderCard(false);
+      el('answer').textContent = 'Välj rätt svar!';
+      const wrong = cards.filter((_, i) => i !== current).sort(() => Math.random() - .5).slice(0, 3).map(c => c.a);
+      const choices = [card.a, ...wrong].sort(() => Math.random() - .5);
+      el('answers').innerHTML = choices.map(choice => `<button class="choice">${choice}</button>`).join('');
+      [...document.querySelectorAll('.choice')].forEach(btn => btn.addEventListener('click', () => checkChoice(btn, card.a)));
+    }
+
+    function checkChoice(button, correct) {
+      const ok = button.textContent === correct;
+      [...document.querySelectorAll('.choice')].forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === correct) btn.classList.add('correct');
+      });
+      if (ok) {
+        state.xp += bossLeft ? 35 : 20;
+        state.streak += 1;
+        markDone(false);
+        confetti();
+        toast(bossLeft ? 'BOSSEN TAPPADE HP! +35 XP 👑' : 'Rätt! +20 XP 🎉');
+      } else {
+        button.classList.add('wrong');
+        state.streak = 0;
+        toast('Nästan! Läs gröna svaret och testa igen 💪');
+      }
+      save();
+      updateHud();
+      if (bossLeft) {
+        bossLeft -= 1;
+        setTimeout(() => bossLeft ? next(true) : toast('Bossfight klar! Du är en demokratihjälte 🏆'), 1200);
+      }
+    }
+
+    function markDone(withReward = true) {
+      if (!state.done.includes(current)) {
+        state.done.push(current);
+        if (withReward) state.xp += 15;
+      }
+      if (withReward) {
+        state.streak += 1;
+        toast('Snyggt! Frågan är avklarad +15 XP 🌟');
+        confetti();
+      }
+      save();
+      updateHud();
+    }
+
+    function next(asQuiz = false) {
+      current = bossLeft ? random(cards.length) : (current + 1) % cards.length;
+      asQuiz || mode === 'quiz' ? renderQuiz() : renderCard(false);
+    }
+
+    function renderQuestList() {
+      el('questList').innerHTML = cards.map((card, i) => `
+        <div class="quest-pill ${state.done.includes(i) ? 'done' : ''}" data-index="${i}">
+          <b>${i + 1}</b><span>${card.q}</span><small>${card.cat}</small>
+        </div>
+      `).join('');
+      [...document.querySelectorAll('.quest-pill')].forEach(pill => pill.addEventListener('click', () => {
+        current = Number(pill.dataset.index);
+        mode === 'quiz' ? renderQuiz() : renderCard(false);
+      }));
+    }
+
+    function buildSortGame() {
+      const bank = el('chipBank');
+      bank.innerHTML = '';
+      document.querySelectorAll('.chip-stack').forEach(stack => stack.innerHTML = '');
+      sortItems.sort(() => Math.random() - .5).forEach(([label, zone]) => {
+        const chip = document.createElement('span');
+        chip.className = 'chip';
+        chip.textContent = label;
+        chip.draggable = true;
+        chip.dataset.zone = zone;
+        bank.appendChild(chip);
+      });
+      bindDrag();
+    }
+
+    function bindDrag() {
+      document.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('dragstart', event => {
+          chip.classList.add('dragging');
+          event.dataTransfer.setData('text/plain', chip.textContent);
+        });
+        chip.addEventListener('dragend', () => chip.classList.remove('dragging'));
+      });
+      document.querySelectorAll('.drop-zone, #chipBank').forEach(zone => {
+        zone.addEventListener('dragover', event => event.preventDefault());
+        zone.addEventListener('drop', event => {
+          event.preventDefault();
+          const dragging = document.querySelector('.dragging');
+          const targetStack = zone.querySelector('.chip-stack') || zone;
+          if (dragging) targetStack.appendChild(dragging);
+        });
+      });
+    }
+
+    function checkSort() {
+      let correct = 0;
+      document.querySelectorAll('.drop-zone').forEach(zone => {
+        zone.querySelectorAll('.chip').forEach(chip => {
+          if (chip.dataset.zone === zone.dataset.zone) correct += 1;
+        });
+      });
+      if (correct === sortItems.length) {
+        state.xp += 50;
+        state.streak += 1;
+        save();
+        updateHud();
+        confetti();
+        toast('Perfekt sortering! +50 XP 🧲🏆');
+      } else {
+        state.streak = 0;
+        save();
+        updateHud();
+        toast(`${correct}/${sortItems.length} rätt. Flytta chipsen och försök igen!`);
+      }
+    }
+
+    el('flashBtn').addEventListener('click', () => { mode = 'flash'; bossLeft = 0; renderCard(false); toast('Flashcard-läge aktiverat 🃏'); });
+    el('quizBtn').addEventListener('click', () => { bossLeft = 0; renderQuiz(); toast('Quiz-läge aktiverat 🎮'); });
+    el('bossBtn').addEventListener('click', () => { bossLeft = 5; current = random(cards.length); renderQuiz(); toast('Bossfight! 5 frågor. Kör! 👑'); });
+    el('revealBtn').addEventListener('click', () => renderCard(true));
+    el('gotItBtn').addEventListener('click', () => markDone(true));
+    el('nextBtn').addEventListener('click', () => next(false));
+    el('checkSortBtn').addEventListener('click', checkSort);
+    el('resetSortBtn').addEventListener('click', buildSortGame);
+
+    renderCard(false);
+    updateHud();
+    buildSortGame();
+  </script>
+</body>
+</html>
